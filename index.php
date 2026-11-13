@@ -23,24 +23,35 @@ class Router
 
     public function route($url)
     {
-        // Suppression du préfixe du début de l'URL
+
         if ($this->prefix && strpos($url, $this->prefix) === 0) {
             $url = substr($url, strlen($this->prefix) + 1);
         }
 
-        // Suppression des barres obliques en trop
         $url = trim($url, '/');
 
-        // Vérification de la correspondance de l'URL à une route définie
-        if (array_key_exists($url, $this->routes)) {
-            // Extraction du nom du contrôleur et de la méthode
-            list($controllerName, $methodName) = explode('@', $this->routes[$url]);
+        $urlParts = explode('/', $url);
 
-            // Instanciation du contrôleur et appel de la méthode
+        if (count($urlParts) === 2 && $urlParts[0] === 'tasks') {
+            $id = $urlParts[1];
+
+            if (filter_var($id, FILTER_VALIDATE_INT) && $id > 0) {
+                $controller = new TaskController();
+                $controller->show($id); 
+                return; 
+            } else {
+                // ID invalide -> 404
+                http_response_code(404);
+                require_once 'views/404.php';
+                return;
+            }
+        }
+
+        if (array_key_exists($url, $this->routes)) {
+            list($controllerName, $methodName) = explode('@', $this->routes[$url]);
             $controller = new $controllerName();
             $controller->$methodName();
         } else {
-            // Gestion des erreurs (page 404, etc.)
             http_response_code(404);
             require_once 'views/404.php';
         }
