@@ -9,6 +9,6 @@
     <p><strong>Titre :</strong> <?php echo $task['title']; ?></p>
     
     
-    <a href="/DemoMVCAlpha/tasks">Retour à la liste des tâches</a>
+    <a href="/R3.01-gestionnaire/tasks">Retour à la liste des tâches</a>
 </body>
 </html>

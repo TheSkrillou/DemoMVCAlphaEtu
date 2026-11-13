@@ -11,6 +11,6 @@
     pour rôle de recevoir toutes les requêtes de l'application et de router chacune
 v   ers le bon contrôleur </p>
     
-    <a href="/DemoMVCAlphaEtu/">Retourner à l'accueil</a>
+    <a href="/R3.01-gestionnaire/">Retourner à l'accueil</a>
 </body>
 </html>
