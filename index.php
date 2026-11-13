@@ -41,7 +41,8 @@ class Router
             $controller->$methodName();
         } else {
             // Gestion des erreurs (page 404, etc.)
-            echo '<h2>la page demandée n\'existe pas</h2>';
+            http_response_code(404);
+            require_once 'views/404.php';
         }
     }
 }
