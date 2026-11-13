@@ -9,8 +9,13 @@
 <h1>Liste des tâches</h1>
 <ul>
 <?php foreach ($tasks as $task): ?>
-    <li><?php echo $task['title']; ?></li>
+    <li>
+        <a href="/DemoMVCAlpha/tasks/<?php echo $task['id']; ?>">
+            <?php echo $task['title']; ?>
+        </a>
+    </li>
 <?php endforeach; ?>
+</ul>
 </ul>
 </body>
 </html>
